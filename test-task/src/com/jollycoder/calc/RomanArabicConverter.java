@@ -51,7 +51,7 @@ enum RomanArabicConverter {
     }
 
     public static String arabicToRoman(int arabic) throws IOException {
-        validator(String.valueOf(arabic));
+        validator(arabic);
         String roman = "";
         for (RomanArabicConverter obj : RomanArabicConverter.values()) {
             while (arabic >= obj.numericValue) {

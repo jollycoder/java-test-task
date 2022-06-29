@@ -4,10 +4,8 @@ package com.jollycoder.calc;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-enum RomanArabicConverter {
+public enum RomanArabicConverter {
     M(1000), CM(900), D(500), CD(400),
     C( 100), XC( 90), L( 50), XL( 40),
     X(  10), IX(  9), V(  5), IV(  4),
@@ -24,14 +22,9 @@ enum RomanArabicConverter {
     }
 
     public static void validator(String romanOrArabic) throws IOException {
-        Pattern p = Pattern.compile("^\\d+$");
-        Matcher m = p.matcher(romanOrArabic);
-        if (m.matches()) validator(Integer.parseInt(romanOrArabic));
-        else {
-            p = Pattern.compile("^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,3})?$");
-            m = p.matcher(romanOrArabic);
-            if (!m.matches()) throw new IOException("wrong input");
-        }
+        if (romanOrArabic.matches("^\\d+$")) validator(Integer.parseInt(romanOrArabic));
+        else if (!romanOrArabic.matches("^M{0,3}(CM|CD|D?C{0,3})?(XC|XL|L?X{0,3})?(IX|IV|V?I{0,3})?$"))
+            throw new IOException("wrong input");
     }
 
     public static void validator(int arabic) throws IOException {
